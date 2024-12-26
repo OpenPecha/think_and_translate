@@ -1,1 +1,3 @@
-# claude_inference_for_translation
+# Think then Translate!!
+
+Repo contains all the prompts used for creating the dataset
