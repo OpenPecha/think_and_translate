@@ -62,24 +62,43 @@ Build a translation agent that can pause during reasoning to access external kno
 
 ### Example Agent Flow
 
-```
-Input: "བྱང་ཆུབ་སེམས་དཔའ་"
+**Input:** སེམས་ཙམ་དུ་སྨྲ་བའི་ལྟ་བས་ཀུན་གཞི་རྣམ་པར་ཤེས་པ་གཏན་ལ་ཕབ་པ།
 
+```
 Agent Reasoning:
 <t>
-This is a key Buddhist term. Let me check the dictionary...
-[TOOL: dictionary_lookup("བྱང་ཆུབ་སེམས་དཔའ་")]
-→ Result: "bodhisattva"
+This passage discusses a philosophical view. I see "སེམས་ཙམ" and "ཀུན་གཞི་རྣམ་པར་ཤེས་པ" 
+which are technical Cittamātra terms.
 
-Now checking if there's a similar passage in translation memory...
-[TOOL: translation_memory_search("བྱང་ཆུབ་སེམས་དཔའ་")]
-→ Result: Found 3 similar examples...
+Let me check the dictionary for standard renderings...
+[TOOL: dictionary_lookup("སེམས་ཙམ")]
+→ "Mind-Only" / "Cittamātra"
 
-Based on context and standard terminology, I'll translate as...
+[TOOL: dictionary_lookup("ཀུན་གཞི་རྣམ་པར་ཤེས་པ")]
+→ "ālayavijñāna" / "foundation consciousness" / "storehouse consciousness"
+
+Multiple options for ཀུན་གཞི་རྣམ་པར་ཤེས་པ. Let me check how 84000 translated similar passages...
+[TOOL: translation_memory("ཀུན་གཞི་རྣམ་པར་ཤེས་པ་གཏན་ལ་ཕབ", filter="tm")]
+→ Found: "...established the ālayavijñāna..." (Saṃdhinirmocana Sūtra)
+→ Found: "...affirming the foundation consciousness..." (Laṅkāvatāra)
+
+84000 uses "ālayavijñāna" in philosophical contexts. But what does "གཏན་ལ་ཕབ་པ" 
+mean here—"established" or "determined"? Let me check commentaries...
+[TOOL: commentary_search("སེམས་ཙམ་གཏན་ལ་ཕབ", filter="commentary")]
+→ Mipham's commentary: "གཏན་ལ་ཕབ་པ་ here means to definitively establish 
+   through reasoning, not merely to assert..."
+
+So the passage is about how the Mind-Only view *establishes* (proves) 
+the ālayavijñāna through philosophical reasoning.
 </t>
 
-Output: "bodhisattva"
+Output: "The Mind-Only proponents' view establishes the ālayavijñāna."
 ```
+
+This example shows the agent:
+1. Using **Dictionary** for standardized terms
+2. Using **Translation Memory** to match 84000's conventions
+3. Using **Commentaries** to resolve ambiguity in meaning
 
 ---
 
